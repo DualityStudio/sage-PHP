@@ -1,0 +1,18 @@
+{
+    "name": "nicoljamie/sage-php",
+    "description": "A simple Sage SDK in PHP",
+    "type": "composer-plugin",
+    "authors": [
+        {
+            "name": "NicolJamie",
+            "email": "jamie.nicol@me.com"
+        }
+    ],
+    "repositories":[
+        {
+            "type": "vcs",
+            "url": "git@github.com:NicolJamie/sage-php.git"
+        }
+    ],
+    "require": {}
+}
