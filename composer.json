@@ -14,5 +14,7 @@
             "url": "git@github.com:NicolJamie/sage-php.git"
         }
     ],
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^7.2"
+    }
 }
