@@ -1,12 +1,12 @@
 <?php
 
-namespace Fcp\AnimalBreedsSearch;
+namespace NicolJamie\SagePHP;
 
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Class SageServiceProvider
- * @package Fcp\AnimalBreedsSearch
+ * @package NicolJamie\SagePHP
  */
 class SageServiceProvider extends ServiceProvider
 {
