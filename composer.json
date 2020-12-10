@@ -1,7 +1,6 @@
 {
     "name": "nicoljamie/sage-php",
     "description": "A simple Sage SDK in PHP",
-    "type": "composer-plugin",
     "authors": [
         {
             "name": "NicolJamie",
