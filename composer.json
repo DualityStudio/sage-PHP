@@ -1,5 +1,5 @@
 {
-    "name": "nicoljamie/sage-php",
+    "name": "nicoljamie/sage",
     "description": "A simple Sage SDK in PHP",
     "type": "library",
     "authors": [
@@ -11,17 +11,16 @@
     "require": {
         "guzzlehttp/guzzle": "^7.2"
     },
-    "autoload": {
-        "psr-4": {
-            "NicolJamie\\SagePHP\\": "src/"
-        }
-    },
     "extra": {
         "laravel": {
             "providers": [
-                "NicolJamie\\SagePHP\\SageServiceProvider.php"
+                "NicolJamie\\Sage\\ServiceProvider"
             ]
         }
     },
-    "minimum-stability": "dev"
+    "autoload": {
+        "psr-4": {
+            "NicolJamie\\Sage\\": "src/"
+        }
+    }
 }
