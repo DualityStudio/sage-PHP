@@ -16,5 +16,6 @@ return [
     'authentication' => [
         'client_id' => env('SAGE_CLIENT_ID'),
         'client_secret' => env('SAGE_CLIENT_SECRET'),
+        'redirect_url' => env('SAGE_REDIRECT_URL')
     ],
 ];
