@@ -1,8 +1,9 @@
 <?php
 
-namespace Fcp\AnimalBreedsSearch;
+namespace NicolJamie\SagePHP;
 
 use Illuminate\Support\ServiceProvider;
+use InvoiceRequest;
 
 /**
  * Class SageServiceProvider
@@ -17,10 +18,7 @@ class SageServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Publishing is only necessary when using the CLI.
-        if ($this->app->runningInConsole()) {
-            $this->bootForConsole();
-        }
+        $this->register();
     }
 
     /**
@@ -30,16 +28,12 @@ class SageServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/sage.php', 'sage');
-    }
+        $this->app->bind(InvoiceRequest::class, function ($app) {
+            return new InvoiceRequest();
+        });
 
-    /**
-     * Console-specific booting.
-     *
-     * @return void
-     */
-    protected function bootForConsole(): void
-    {
-        $this->commands([]);
+        $this->mergeConfigFrom(__DIR__ . '/../config/sage.php', 'sage');
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
