@@ -8,18 +8,20 @@
             "email": "jamie.nicol@me.com"
         }
     ],
-    "repositories":[
-        {
-            "type": "vcs",
-            "url": "git@github.com:NicolJamie/sage-php.git"
-        }
-    ],
     "require": {
         "guzzlehttp/guzzle": "^7.2"
     },
     "autoload": {
         "psr-4": {
-            "NicolJamie\\": "src/"
+            "NicolJamie\\SagePHP\\": "src/"
         }
-    }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NicolJamie\\SagePHP\\SageServiceProvider.php"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
 }
