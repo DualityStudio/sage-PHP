@@ -15,16 +15,6 @@ class Client extends \GuzzleHttp\Client
     public array $config = [];
 
     /**
-     * Client constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->resolveConfiguration();
-    }
-
-    /**
      * BaseRequest
      * @param string $method
      * @param string $uri
@@ -34,33 +24,36 @@ class Client extends \GuzzleHttp\Client
      */
     public function request(string $method, $uri = '', array $options = []): ResponseInterface
     {
+        $options['headers'] = [
+            'Authorization' => 'Bearer ' . $this->getJwt(),
+            'Accept' => 'application/json',
+        ];
+
+        $options['base_uri'] = config('sage.api_endpoint');
+
         return parent::request($method, $uri, $options);
     }
 
     /**
-     * get
-     * @param \Psr\Http\Message\UriInterface|string $uri
-     * @param array $options
-     * @return ResponseInterface
-     * @throws GuzzleException
+     * constructAuthenticationUrl
+     * @return string
      */
-    public function get($uri, array $options = []): ResponseInterface
+    public function constructAuthenticationUrl(): string
     {
-        parent::get($uri, $options);
-    }
-
-    public function constructAuthenticationUrl()
-    {
-
+        return config('sage.auth_endpoint') . '&response_type=code'
+            . '&client_id=' . config('sage.authentication.client_id')
+            . '&redirect_uri=' . config('sage.authentication.redirect_url');
     }
 
     /**
-     * resolveConfiguration
-     * @return array|string[]
+     * getJwt
+     * @return string
      */
-    private function resolveConfiguration(): array
+    private function getJwt(): string
     {
-        return Cache::remember("sage.jwt", 15 * 60, function () {
+        if (Cache::has("sage.jwt")) return Cache::get("sage.jwt");
+
+        return Cache::remember("sage.jwt", 4 * 60, function () {
             $response = app()
                 ->make(\GuzzleHttp\Client::class)
                 ->post('https://oauth.accounting.sage.com/token', [
@@ -71,19 +64,14 @@ class Client extends \GuzzleHttp\Client
                         'client_id' => config('sage.authentication.client_id'),
                         'client_secret' => config('sage.authentication.client_secret'),
                         'grant_type' => 'refresh_token',
-                        'refresh_token' => ''
+                        'refresh_token' => decrypt(Cache::get("sage.jwt-refresh"))
                     ]
                 ]);
 
             $jsResp = json_decode($response->getBody());
-            return $jsResp->token;
+            Cache::add("sage.jwt-refresh", encrypt($jsResp->refresh_token));
+
+            return $jsResp->access_token;
         });
-
-        $this->config = [
-            'Authorization' => 'Bearer ' . $token,
-            'Accept' => 'application/json',
-        ];
-
-        return $this->config;
     }
 }

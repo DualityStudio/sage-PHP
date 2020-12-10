@@ -6,6 +6,6 @@ class InvoiceRequest extends Client
 {
     public function fetch()
     {
-        $this->get($this->endpoint . '/addresses');
+        $this->get('/addresses');
     }
 }
