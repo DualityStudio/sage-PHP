@@ -1,11 +1,27 @@
 <?php
 
-use NicolJamie\SagePHP\Client;
+namespace NicolJamie\Sage\Invoices;
+
+use GuzzleHttp\Exception\GuzzleException;
+use NicolJamie\Sage\Client;
 
 class InvoiceRequest extends Client
 {
+    /**
+     * fetch
+     * @throws GuzzleException
+     */
     public function fetch()
     {
-        $this->get('/addresses');
+        $request = $this->base('GET', 'addresses');
+
+        dd(json_decode($request->getBody()->getContents()));
+    }
+
+    public function store()
+    {
+        $this->base('POST', '', [
+
+        ]);
     }
 }
