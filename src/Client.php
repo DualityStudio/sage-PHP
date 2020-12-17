@@ -4,25 +4,22 @@ namespace NicolJamie\Sage;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
+use function PHPUnit\Framework\isJson;
 
 class Client extends Auth
 {
     /** @var string $endpoint */
     public string $endpoint;
 
-    /** @var array $config */
-    public array $config = [];
-
     /**
-     * BaseRequest
+     * base
      * @param string $method
      * @param string $uri
-     * @param array $data
+     * @param $data
      * @return ResponseInterface
-     * @throws GuzzleException
      * @throws \Exception
      */
-    public function base(string $method, $uri = '', array $data = []): ResponseInterface
+    public function base(string $method, string $uri, $data = null): ResponseInterface
     {
         $options = [
             'headers' => [
@@ -30,15 +27,16 @@ class Client extends Auth
                 'Content-Type' => 'application/json'
             ],
             'base_uri' => config('sage.api_endpoint'),
-            'form_params' => $data
         ];
+
+        $options[(is_array($data) ? 'form_params' : 'body')] = $data;
 
         try {
             $request = $this->request($method, $uri, $options);
         } catch (GuzzleException $exception) {
             throw new \Exception($exception->getMessage());
-        } finally {
-            return $request;
         }
+
+        return $request;
     }
 }

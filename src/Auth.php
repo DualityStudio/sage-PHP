@@ -2,9 +2,8 @@
 
 namespace NicolJamie\Sage;
 
-use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Cache;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Auth extends \GuzzleHttp\Client
 {
@@ -22,7 +21,7 @@ class Auth extends \GuzzleHttp\Client
     /**
      * authorizationToAccess
      * @param $code
-     * @throws BindingResolutionException
+     * @throws GuzzleException
      */
     public function authorizationToAccess($code)
     {

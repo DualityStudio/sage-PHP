@@ -5,7 +5,7 @@ namespace NicolJamie\Sage\Invoices;
 use GuzzleHttp\Exception\GuzzleException;
 use NicolJamie\Sage\Client;
 
-class InvoiceRequest extends Client
+class Invoices extends Client
 {
     /**
      * fetch
