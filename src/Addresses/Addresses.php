@@ -11,6 +11,11 @@ class Addresses extends Client
 {
     use Transformer;
 
+    const KEYS = [
+        'name', 'is_main_address', 'address_type_id', 'address_line_1', 'address_line_2', 'city',
+        'postal_code', 'country_id', 'contact_id'
+    ];
+
     /**
      * index
      * @return Addresses
@@ -41,21 +46,44 @@ class Addresses extends Client
      */
     public function store(array $data, $key = null): Addresses
     {
-        $body = [
-            'name' => $data['name'],
-            'is_main_address' => $data['default'],
-            'address_type_id' => $data['address_type'],
-            'address_line_1' => $data['address']['line1'],
-            'address_line_2' => $data['address']['line2'],
-            'city' => $data['address']['city'],
-            'postal_code' => $data['address']['postal_code'],
-            'country_id' => $data['address']['country_id'],
-        ];
+        $body = [];
+        foreach (self::KEYS as $str) {
+            if (isset($data[$str])) $body[$str] = $data[$str];
+        }
 
         if (!is_null($key)) $body['contact_id'] = $key;
 
         return $this->parse(
             $this->base('POST', 'addresses', json_encode(['address' => $body]))
         );
+    }
+
+    /**
+     * update
+     * @param $data
+     * @param $key
+     * @return Addresses
+     * @throws \Exception
+     */
+    public function update($data, $key): Addresses
+    {
+        $body = [];
+        foreach (self::KEYS as $str) {
+            if (isset($data[$str])) $body[$str] = $data[$str];
+        }
+
+        return $this->parse(
+            $this->base('PUT', "addresses/{$key}", json_encode(['address' => $body]))
+        );
+    }
+
+    /**
+     * remove
+     * @return Addresses
+     * @throws \Exception
+     */
+    public function remove(): Addresses
+    {
+        return $this->parse($this->base('DELETE', ''));
     }
 }

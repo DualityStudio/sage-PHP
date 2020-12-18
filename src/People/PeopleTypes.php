@@ -1,11 +1,11 @@
 <?php
 
-namespace NicolJamie\Sage\Contacts;
+namespace NicolJamie\Sage\People;
 
 use NicolJamie\Sage\Client;
 use NicolJamie\Sage\Transformer;
 
-class CustomerTypes extends Client
+class PeopleTypes extends Client
 {
     use Transformer;
 
@@ -16,7 +16,7 @@ class CustomerTypes extends Client
      */
     public function index(): PeopleTypes
     {
-        return $this->parse($this->base('GET', "contact_types"));
+        return $this->parse($this->base('GET', "contact_person_types"));
     }
 
     /**
@@ -27,6 +27,6 @@ class CustomerTypes extends Client
      */
     public function show($key): PeopleTypes
     {
-        return $this->parse($this->base('GET', "contact_types/{$key}"));
+        return $this->parse($this->base('GET', "contact_person_types/{$key}"));
     }
 }

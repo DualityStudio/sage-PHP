@@ -67,12 +67,12 @@ class Auth extends \GuzzleHttp\Client
                 $response = json_decode($request->getBody()->getContents());
             } catch (GuzzleException $exception) {
                 throw new \Exception($exception->getMessage());
-            } finally {
-                Cache::forget("sage.jwt.refresh");
-                Cache::add("sage.jwt.refresh", $response->refresh_token);
-
-                return $response->access_token;
             }
+
+            Cache::forget("sage.jwt.refresh");
+            Cache::add("sage.jwt.refresh", $response->refresh_token);
+
+            return $response->access_token;
         });
     }
 }
