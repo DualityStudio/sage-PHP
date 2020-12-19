@@ -10,8 +10,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class Addresses extends Client
 {
-    use Transformer;
-
     const KEYS = [
         'name', 'is_main_address', 'address_type_id', 'address_line_1', 'address_line_2', 'city',
         'postal_code', 'country_id', 'contact_id'
@@ -19,23 +17,23 @@ class Addresses extends Client
 
     /**
      * index
-     * @return Addresses
+     * @return object
      * @throws \Exception
      */
-    public function index(): Addresses
+    public function index(): object
     {
-        return $this->parse($this->base('GET', "addresses"));
+        return Address::data($this->base('GET', "addresses"));
     }
 
     /**
      * show
      * @param $key
-     * @return Addresses
+     * @return object
      * @throws \Exception
      */
-    public function show($key): Addresses
+    public function show($key): object
     {
-        return $this->parse($this->base('GET', "addresses/{$key}"));
+        return Address::datum($this->base('GET', "addresses/{$key}"));
     }
 
     /**
@@ -61,28 +59,27 @@ class Addresses extends Client
      * update
      * @param $data
      * @param $key
-     * @return Addresses
+     * @return object
      * @throws \Exception
      */
-    public function update($data, $key): Addresses
+    public function update($data, $key): object
     {
         $body = [];
         foreach (self::KEYS as $str) {
             if (isset($data[$str])) $body[$str] = $data[$str];
         }
 
-        return $this->parse(
-            $this->base('PUT', "addresses/{$key}", json_encode(['address' => $body]))
-        );
+        return Address::datum($this->base('PUT', "addresses/{$key}", json_encode(['address' => $body])));
     }
 
     /**
      * remove
-     * @return Addresses
+     * @param $key
+     * @return Client
      * @throws \Exception
      */
-    public function remove(): Addresses
+    public function remove($key): Client
     {
-        return $this->parse($this->base('DELETE', ''));
+        return $this->base('DELETE', "addresses/{$key}");
     }
 }

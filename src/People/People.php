@@ -13,12 +13,12 @@ class People extends Client
 
     /**
      * index
-     * @return People
+     * @return object
      * @throws Exception
      */
-    public function index(): People
+    public function index(): object
     {
-        return $this->parse($this->base('GET', "contact_persons"));
+        return Data\People::data($this->base('GET', "contact_persons"));
     }
 
     /**

@@ -25,6 +25,6 @@ class CustomerTypes extends Client
      */
     public function show($key): object
     {
-        return CustomerType::datum($this->parse($this->base('GET', "contact_types/{$key}")));
+        return CustomerType::datum($this->base('GET', "contact_types/{$key}"));
     }
 }

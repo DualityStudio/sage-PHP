@@ -14,10 +14,16 @@ trait Data
         $response = $data->response();
 
         foreach (get_class_vars(self::class) as $property => $value) {
-            self::$$property = $response->$property;
+            if (isset($response->$property)) self::$$property = $response->$property;
         }
 
-        return (object)get_class_vars(get_class(new self()));
+        $returnObject = (object)get_class_vars(get_class(new self()));
+
+        foreach ($returnObject as $item => $value) {
+            if (empty($value)) unset($returnObject->$item);
+        }
+
+        return $returnObject;
     }
 
     /**
