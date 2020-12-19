@@ -15,8 +15,8 @@ trait Transformer
     /** @var array $items */
     public array $items = [];
 
-    /** @var bool $singular */
-    public bool $singular = false;
+    /** @var array $response */
+    public array $response = [];
 
     /**
      * parse
@@ -27,8 +27,7 @@ trait Transformer
         $jsonDecode = json_decode($data->getBody()->getContents(), true);
 
         if (!isset($jsonDecode['$items'])) {
-            $this->singular = true;
-            $this->items = $jsonDecode;
+            $this->response = $jsonDecode;
         } else {
             foreach (get_object_vars($this) as $property => $value) {
                 if (isset($jsonDecode['$' . $property])) $this->$property = $jsonDecode['$' . $property];
@@ -57,13 +56,22 @@ trait Transformer
     }
 
     /**
-     * items
-     * @return Collection|string
+     * response
+     * Returns a single item in its response
+     * @return mixed
      */
-    public function items()
+    public function response()
     {
-        if ($this->singular) return json_decode(collect($this->items)->toJson());
+        return json_decode(collect($this->response)->toJson());
+    }
 
+    /**
+     * items
+     * Returns a list of items as part of the response
+     * @return Collection
+     */
+    public function items(): Collection
+    {
         return collect($this->items)->map(function ($map) {
             return (object)$map;
         });

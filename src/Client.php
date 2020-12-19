@@ -8,6 +8,8 @@ use function PHPUnit\Framework\isJson;
 
 class Client extends Auth
 {
+    use Transformer;
+
     /** @var string $endpoint */
     public string $endpoint;
 
@@ -16,10 +18,10 @@ class Client extends Auth
      * @param string $method
      * @param string $uri
      * @param $data
-     * @return ResponseInterface
+     * @return Client
      * @throws \Exception
      */
-    public function base(string $method, string $uri, $data = null): ResponseInterface
+    public function base(string $method, string $uri, $data = null): Client
     {
         $options = [
             'headers' => [
@@ -37,6 +39,6 @@ class Client extends Auth
             throw new \Exception($exception->getMessage());
         }
 
-        return $request;
+        return $this->parse($request);
     }
 }

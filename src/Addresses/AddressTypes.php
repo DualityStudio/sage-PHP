@@ -3,30 +3,28 @@
 namespace NicolJamie\Sage\Addresses;
 
 use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Transformer;
+use NicolJamie\Sage\Addresses\Data\AddressType;
 use GuzzleHttp\Exception\GuzzleException;
 
 class AddressTypes extends Client
 {
-    use Transformer;
-
     /**
-     * @return AddressTypes
+     * @return object
      * @throws \Exception
      */
-    public function index(): AddressTypes
+    public function index(): object
     {
-        return $this->parse($this->base('GET', "address_types"));
+        return AddressType::data($this->base('GET', "address_types"));
     }
 
     /**
      * Show
      * @param $key
-     * @return AddressTypes
+     * @return object
      * @throws GuzzleException|\Exception
      */
-    public function show($key): AddressTypes
+    public function show($key): object
     {
-        return $this->parse($this->base('GET', "address_types/{$key}"));
+        return AddressType::datum($this->base('GET', "address_types/{$key}"));
     }
 }

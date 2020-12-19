@@ -1,11 +1,12 @@
 <?php
 
-namespace NicolJamie\Sage\Contacts;
+namespace NicolJamie\Sage\People;
 
 use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Contacts\Data\CustomerType;
+use NicolJamie\Sage\People\Data\PeopleType;
+use NicolJamie\Sage\Transformer;
 
-class CustomerTypes extends Client
+class PeopleTypes extends Client
 {
     /**
      * index
@@ -14,7 +15,7 @@ class CustomerTypes extends Client
      */
     public function index(): object
     {
-        return CustomerType::data($this->base('GET', "contact_types"));
+        return PeopleType::data($this->base('GET', "contact_person_types"));
     }
 
     /**
@@ -25,6 +26,6 @@ class CustomerTypes extends Client
      */
     public function show($key): object
     {
-        return CustomerType::datum($this->base('GET', "contact_types/{$key}"));
+        return PeopleType::datum($this->base('GET', "contact_person_types/{$key}"));
     }
 }

@@ -2,31 +2,29 @@
 
 namespace NicolJamie\Sage\Currency;
 
+use Exception;
 use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Transformer;
 
 class Currency extends Client
 {
-    use Transformer;
-
     /**
      * index
-     * @return Currency
-     * @throws \Exception
+     * @return object
+     * @throws Exception
      */
-    public function index(): Currency
+    public function index(): object
     {
-        return $this->parse($this->base('GET', "currencies"));
+        return Data\Currency::data($this->base('GET', "currencies"));
     }
 
     /**
      * show
      * @param $key
-     * @return Currency
-     * @throws \Exception
+     * @return object
+     * @throws Exception
      */
-    public function show($key): Currency
+    public function show($key): object
     {
-        return $this->parse($this->base('GET', "currencies/{$key}"));
+        return Data\Currency::datum($this->base('GET', "currencies/{$key}"));
     }
 }
