@@ -3,30 +3,28 @@
 namespace NicolJamie\Sage\Contacts;
 
 use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Transformer;
+use NicolJamie\Sage\Contacts\Data\CustomerType;
 
 class CustomerTypes extends Client
 {
-    use Transformer;
-
     /**
      * index
-     * @return PeopleTypes
+     * @return object
      * @throws \Exception
      */
-    public function index(): PeopleTypes
+    public function index(): object
     {
-        return $this->parse($this->base('GET', "contact_types"));
+        return CustomerType::data($this->base('GET', "contact_types"));
     }
 
     /**
      * show
      * @param $key
-     * @return PeopleTypes
+     * @return object
      * @throws \Exception
      */
-    public function show($key): PeopleTypes
+    public function show($key): object
     {
-        return $this->parse($this->base('GET', "contact_types/{$key}"));
+        return CustomerType::datum($this->parse($this->base('GET', "contact_types/{$key}")));
     }
 }

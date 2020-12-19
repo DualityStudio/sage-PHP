@@ -3,6 +3,7 @@
 namespace NicolJamie\Sage\Addresses;
 
 use GuzzleHttp\Exception\GuzzleException;
+use NicolJamie\Sage\Addresses\Data\Address;
 use NicolJamie\Sage\Client;
 use NicolJamie\Sage\Transformer;
 use Psr\Http\Message\ResponseInterface;
@@ -41,10 +42,10 @@ class Addresses extends Client
      * store
      * @param $key
      * @param array $data
-     * @return Addresses
+     * @return object
      * @throws \Exception
      */
-    public function store(array $data, $key = null): Addresses
+    public function store(array $data, $key = null): object
     {
         $body = [];
         foreach (self::KEYS as $str) {
@@ -53,9 +54,7 @@ class Addresses extends Client
 
         if (!is_null($key)) $body['contact_id'] = $key;
 
-        return $this->parse(
-            $this->base('POST', 'addresses', json_encode(['address' => $body]))
-        );
+        return Address::datum($this->base('POST', 'addresses', json_encode(['address' => $body])));
     }
 
     /**

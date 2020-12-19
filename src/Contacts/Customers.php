@@ -4,82 +4,75 @@ namespace NicolJamie\Sage\Contacts;
 
 use Exception;
 use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Transformer;
-use Psr\Http\Message\ResponseInterface;
+use NicolJamie\Sage\Contacts\Data\Customer;
 
 class Customers extends Client
 {
-    use Transformer;
-
     const KEYS = [
         'name', 'contact_type_ids', 'reference', 'currency_id', 'tax_number'
     ];
 
     /**
      * index
-     * @return Customers
+     * @return Client
      * @throws Exception
      */
-    public function index(): Customers
+    public function index(): Client
     {
-        return $this->parse($this->base('GET', "contacts"));
+        return $this->base('GET', "contacts");
     }
 
     /**
      * show
      * @param $key
-     * @return Customers
+     * @return object
      * @throws Exception
      */
-    public function show($key): Customers
+    public function show($key): object
     {
-        return $this->parse($this->base('GET', "contacts/{$key}"));
+        return Customer::datum($this->base('GET', "contacts/{$key}"));
     }
 
     /**
      * store
      * @param $data
-     * @return Customers
+     * @return object
      * @throws Exception
      */
-    public function store($data): Customers
+    public function store($data): object
     {
         $body = [];
         foreach (self::KEYS as $str) {
             if (isset($data[$str])) $body[$str] = $data[$str];
         }
 
-        return $this->parse(
-            $this->base('POST', 'contacts', json_encode(['contact' => $body]))
-        );
+        return Customer::datum($this->base('POST', 'contacts', json_encode(['contact' => $body])));
     }
 
     /**
      * update
      * @param $data
      * @param $key
-     * @return Customers
+     * @return object
      * @throws Exception
      */
-    public function update($data, $key): Customers
+    public function update($data, $key): object
     {
         $body = [];
         foreach (self::KEYS as $item) {
             if (isset($data[$item])) $body[$item] = $data[$item];
         }
 
-        return $this->parse(
-            $this->base('PUT', "contacts/{$key}", json_encode(['contact' => $body]))
-        );
+        return Customer::datum($this->base('PUT', "contacts/{$key}", json_encode(['contact' => $body])));
     }
 
     /**
      * remove
      * @param string $key
-     * @return ResponseInterface
+     * @return Client
      * @throws Exception
      */
-    public function remove(string $key): ResponseInterface
+    public function remove(string $key): Client
     {
         return $this->base('DELETE', "contacts/{$key}");
     }

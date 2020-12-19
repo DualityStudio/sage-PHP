@@ -4,13 +4,9 @@ namespace NicolJamie\Sage\People;
 
 use Exception;
 use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Transformer;
-use Psr\Http\Message\ResponseInterface;
 
 class People extends Client
 {
-    use Transformer;
-
     const KEYS = [
         'name', 'contact_person_type_ids', 'job_title', 'telephone', 'mobile', 'email', 'fax'
     ];
@@ -28,22 +24,22 @@ class People extends Client
     /**
      * show
      * @param $key
-     * @return People
+     * @return object
      * @throws Exception
      */
-    public function show($key): People
+    public function show($key): object
     {
-        return $this->parse($this->base('GET', "contact_persons/{$key}"));
+        return Data\People::datum($this->base('GET', "contact_persons/{$key}"));
     }
 
     /**
      * store
      * @param $data
      * @param $key
-     * @return People
+     * @return object
      * @throws Exception
      */
-    public function store($data, $key): People
+    public function store($data, $key): object
     {
         $body = [];
         foreach (self::KEYS as $str) {
@@ -51,10 +47,10 @@ class People extends Client
         }
 
         $body = $body + [
-            'is_main_contact' => true, 'is_preferred_contact' => true, 'address_id' => $key
-        ];
+                'is_main_contact' => true, 'is_preferred_contact' => true, 'address_id' => $key
+            ];
 
-        return $this->parse(
+        return Data\People::datum(
             $this->base('POST', 'contact_persons', json_encode(['contact_person' => $body]))
         );
     }
@@ -63,17 +59,17 @@ class People extends Client
      * update
      * @param $data
      * @param $key
-     * @return People
+     * @return object
      * @throws Exception
      */
-    public function update($data, $key): People
+    public function update($data, $key): object
     {
         $body = [];
         foreach (self::KEYS as $item) {
             if (isset($data[$item])) $body[$item] = $data[$item];
         }
 
-        return $this->parse(
+        return Data\People::datum(
             $this->base('PUT', "contact_persons/{$key}", json_encode(['contact_person' => $body]))
         );
     }
@@ -81,10 +77,10 @@ class People extends Client
     /**
      * remove
      * @param string $key
-     * @return ResponseInterface
+     * @return Client
      * @throws Exception
      */
-    public function remove(string $key): ResponseInterface
+    public function remove(string $key): Client
     {
         return $this->base('DELETE', "contact_persons/{$key}");
     }
