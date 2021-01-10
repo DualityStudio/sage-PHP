@@ -1,5 +1,5 @@
 {
-    "name": "nicoljamie/sage",
+    "name": "dualitystudio/sage-php",
     "description": "A simple Sage SDK in PHP",
     "type": "library",
     "authors": [
@@ -14,13 +14,13 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NicolJamie\\Sage\\ServiceProvider"
+                "DualityStudio\\Sage\\ServiceProvider"
             ]
         }
     },
     "autoload": {
         "psr-4": {
-            "NicolJamie\\Sage\\": "src/"
+            "DualityStudio\\Sage\\": "src/"
         }
     }
 }
