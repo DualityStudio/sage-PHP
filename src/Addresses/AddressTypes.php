@@ -1,9 +1,9 @@
 <?php
 
-namespace NicolJamie\Sage\Addresses;
+namespace DualityStudio\Sage\Addresses;
 
-use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Addresses\Data\AddressType;
+use DualityStudio\Sage\Client;
+use DualityStudio\Sage\Addresses\Data\AddressType;
 use GuzzleHttp\Exception\GuzzleException;
 
 class AddressTypes extends Client

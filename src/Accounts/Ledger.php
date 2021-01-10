@@ -1,9 +1,9 @@
 <?php
 
-namespace NicolJamie\Sage\Accounts;
+namespace DualityStudio\Sage\Accounts;
 
 use Exception;
-use NicolJamie\Sage\Client;
+use DualityStudio\Sage\Client;
 
 class Ledger extends Client
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace NicolJamie\Sage;
+namespace DualityStudio\Sage;
 
 use Illuminate\Support\ServiceProvider as BaseProvider;
 
 /**
  * Class ServiceProvider
- * @package NicolJamie\Sage
+ * @package DualityStudio\Sage
  */
 class ServiceProvider extends BaseProvider
 {

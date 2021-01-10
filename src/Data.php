@@ -1,6 +1,6 @@
 <?php
 
-namespace NicolJamie\Sage;
+namespace DualityStudio\Sage;
 
 trait Data
 {

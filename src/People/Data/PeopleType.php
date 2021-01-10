@@ -1,7 +1,8 @@
 <?php
-namespace NicolJamie\Sage\People\Data;
 
-use NicolJamie\Sage\Data;
+namespace DualityStudio\Sage\People\Data;
+
+use DualityStudio\Sage\Data;
 
 class PeopleType
 {

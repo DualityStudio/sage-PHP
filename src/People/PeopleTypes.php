@@ -1,10 +1,10 @@
 <?php
 
-namespace NicolJamie\Sage\People;
+namespace DualityStudio\Sage\People;
 
-use NicolJamie\Sage\Client;
-use NicolJamie\Sage\People\Data\PeopleType;
-use NicolJamie\Sage\Transformer;
+use DualityStudio\Sage\Client;
+use DualityStudio\Sage\People\Data\PeopleType;
+use DualityStudio\Sage\Transformer;
 
 class PeopleTypes extends Client
 {

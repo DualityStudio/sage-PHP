@@ -1,7 +1,8 @@
 <?php
-namespace NicolJamie\Sage\Addresses\Data;
 
-use NicolJamie\Sage\Data;
+namespace DualityStudio\Sage\Addresses\Data;
+
+use DualityStudio\Sage\Data;
 
 class Address
 {

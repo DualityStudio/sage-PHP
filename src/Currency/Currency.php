@@ -1,9 +1,9 @@
 <?php
 
-namespace NicolJamie\Sage\Currency;
+namespace DualityStudio\Sage\Currency;
 
 use Exception;
-use NicolJamie\Sage\Client;
+use DualityStudio\Sage\Client;
 
 class Currency extends Client
 {

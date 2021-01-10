@@ -1,7 +1,8 @@
 <?php
-namespace NicolJamie\Sage\Currency\Data;
 
-use NicolJamie\Sage\Data;
+namespace DualityStudio\Sage\Currency\Data;
+
+use DualityStudio\Sage\Data;
 
 class Currency
 {

@@ -1,7 +1,8 @@
 <?php
-namespace NicolJamie\Sage\Accounts\Data;
 
-use NicolJamie\Sage\Data;
+namespace DualityStudio\Sage\Accounts\Data;
+
+use DualityStudio\Sage\Data;
 
 class Ledger
 {

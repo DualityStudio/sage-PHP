@@ -1,7 +1,8 @@
 <?php
-namespace NicolJamie\Sage\Contacts\Data;
 
-use NicolJamie\Sage\Data;
+namespace DualityStudio\Sage\Contacts\Data;
+
+use DualityStudio\Sage\Data;
 
 class Customer
 {

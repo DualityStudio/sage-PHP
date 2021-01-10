@@ -1,7 +1,8 @@
 <?php
-namespace NicolJamie\Sage\Invoices\Data;
 
-use NicolJamie\Sage\Data;
+namespace DualityStudio\Sage\Invoices\Data;
+
+use DualityStudio\Sage\Data;
 
 class Invoice
 {

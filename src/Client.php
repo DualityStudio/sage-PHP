@@ -1,6 +1,6 @@
 <?php
 
-namespace NicolJamie\Sage;
+namespace DualityStudio\Sage;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;

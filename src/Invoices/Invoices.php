@@ -1,10 +1,10 @@
 <?php
 
-namespace NicolJamie\Sage\Invoices;
+namespace DualityStudio\Sage\Invoices;
 
 use Carbon\Carbon;
-use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Invoices\Data\Invoice;
+use DualityStudio\Sage\Client;
+use DualityStudio\Sage\Invoices\Data\Invoice;
 
 class Invoices extends Client
 {

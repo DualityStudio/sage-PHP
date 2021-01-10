@@ -1,11 +1,11 @@
 <?php
 
-namespace NicolJamie\Sage\Addresses;
+namespace DualityStudio\Sage\Addresses;
 
 use GuzzleHttp\Exception\GuzzleException;
-use NicolJamie\Sage\Addresses\Data\Address;
-use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Transformer;
+use DualityStudio\Sage\Addresses\Data\Address;
+use DualityStudio\Sage\Client;
+use DualityStudio\Sage\Transformer;
 use Psr\Http\Message\ResponseInterface;
 
 class Addresses extends Client

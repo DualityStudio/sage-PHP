@@ -1,9 +1,9 @@
 <?php
 
-namespace NicolJamie\Sage\People;
+namespace DualityStudio\Sage\People;
 
 use Exception;
-use NicolJamie\Sage\Client;
+use DualityStudio\Sage\Client;
 
 class People extends Client
 {

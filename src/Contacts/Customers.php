@@ -1,10 +1,10 @@
 <?php
 
-namespace NicolJamie\Sage\Contacts;
+namespace DualityStudio\Sage\Contacts;
 
 use Exception;
-use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Contacts\Data\Customer;
+use DualityStudio\Sage\Client;
+use DualityStudio\Sage\Contacts\Data\Customer;
 
 class Customers extends Client
 {

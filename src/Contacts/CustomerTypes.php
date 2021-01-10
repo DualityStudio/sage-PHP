@@ -1,9 +1,9 @@
 <?php
 
-namespace NicolJamie\Sage\Contacts;
+namespace DualityStudio\Sage\Contacts;
 
-use NicolJamie\Sage\Client;
-use NicolJamie\Sage\Contacts\Data\CustomerType;
+use DualityStudio\Sage\Client;
+use DualityStudio\Sage\Contacts\Data\CustomerType;
 
 class CustomerTypes extends Client
 {
